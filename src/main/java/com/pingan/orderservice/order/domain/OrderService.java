@@ -1,14 +1,18 @@
 package com.pingan.orderservice.order.domain;
 
+import com.pingan.orderservice.book.Book;
+import com.pingan.orderservice.book.BookClient;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service //构造型注解，将此类标记为Spring 管理的服务
 public class OrderService {
+    private final BookClient bookClient;
     private final OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(BookClient bookClient, OrderRepository orderRepository) {
+        this.bookClient = bookClient;
         this.orderRepository = orderRepository;
     }
 
@@ -17,8 +21,18 @@ public class OrderService {
     }
 
     public Mono<Order> submitOrder(String isbn, int quantity) {
-        return Mono.just(buildRejectedOrder(isbn, quantity)) //基于Order对象创建Mono
-                .flatMap(orderRepository::save);//将上一步通过反应式流异步生成的Order对象保存到数据库中
+        return bookClient.getBookByIsbn(isbn) //调用Catalog Service以检查图书的可用性
+                .map(book -> buildRejectedOrder(book, quantity)) //如果图书可用的话，接受该订单
+                .defaultIfEmpty( // 如果图书不可用的话，拒绝该订单
+                        buildRejectedOrder(isbn, quantity)
+                )
+                .flatMap(orderRepository::save); //保存订单（可能是accented状态或rejected状态）
+    }
+
+    public static Order buildRejectedOrder(Book book, int quantity) {
+        //当订单被接受的话，我们指定ISBN,图书名称（书名+作者），数量和状态。Spring Data会负责添加标识符，版本和审计元数据
+        return Order.of(book.isbn(), book.title() + "-" + book.author(), book.price(), quantity, OrderStatus.ACCEPTED);
+
     }
 
     public static Order buildRejectedOrder(String bookIsbn, int quantity) {
