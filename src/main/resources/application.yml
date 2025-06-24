@@ -53,8 +53,8 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: user
-    password: password
+    username: jiaoyuyang
+    password: haohaoxuexi
     connection-timeout: 5s
 polar:
   catalog-service-uri: "http://localhost:9001"
