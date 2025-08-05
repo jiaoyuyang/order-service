@@ -18,8 +18,9 @@ public class OrderFunctions {
             OrderService orderService
     ){
         return flux ->
-                orderService.consumeOrderDispatchedEvent(flux)
-                        .doOnNext(order -> log.info("The order with id {} is dispatched", order.id()))
-                        .subscribe();
+                orderService.consumeOrderDispatchedEvent(flux) //对于派发的每条消息，它都会更新数据库中相关订单的状态
+                        .doOnNext(order -> log.info("The order with id {} is dispatched",
+                                order.id())) //对数据库中要更新的每个订单，均打印一条日志消息
+                        .subscribe(); //订阅反应式流以激活它。如果没有订阅者，流中不会产生数据流
     }
 }
