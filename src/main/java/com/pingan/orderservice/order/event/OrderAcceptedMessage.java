@@ -1,4 +1,4 @@
 package com.pingan.orderservice.order.event;
 
-public record OrderAcceptedMessage(Long orderIds) {
+public record OrderAcceptedMessage(Long orderId) {
 }
