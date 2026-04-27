@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "polar",
+      "type": "com.polarbookshop.orderservice.config.ClientProperties",
+      "sourceType": "com.polarbookshop.orderservice.config.ClientProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "polar.catalog-service-uri",
+      "type": "java.net.URI",
+      "sourceType": "com.polarbookshop.orderservice.config.ClientProperties"
+    }
+  ],
+  "hints": []
+}

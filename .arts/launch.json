@@ -1,0 +1,83 @@
+{
+    "configurations": [
+        {
+            "request": "launch",
+            "type": "javadbg",
+            "name": "gradle clean",
+            "__internal_id": "b6f69384-bd66-4459-80bc-d568d3f5904f",
+            "temporary": true,
+            "withProfiling": false,
+            "withCoverage": false,
+            "killPrevSession": false,
+            "ignoreBuildErrors": false,
+            "verbose": false,
+            "any": {
+                "commandLine": "gradle clean --init-script \"/data/storage/el2/base/cache/catestinit.gradle\""
+            }
+        },
+        {
+            "request": "launch",
+            "type": "javadbg",
+            "name": "gradle bootJar",
+            "__internal_id": "4a719187-6fd6-4b4f-b957-ceb8583e8b6f",
+            "temporary": true,
+            "withProfiling": false,
+            "withCoverage": false,
+            "killPrevSession": false,
+            "ignoreBuildErrors": false,
+            "verbose": false,
+            "any": {
+                "commandLine": "gradle bootJar --init-script \"/data/storage/el2/base/cache/catestinit.gradle\""
+            }
+        },
+        {
+            "request": "launch",
+            "type": "javadbg",
+            "name": "gradle bootRun",
+            "__internal_id": "78f63069-dace-47c8-bd93-b935344f12c6",
+            "temporary": true,
+            "withProfiling": false,
+            "withCoverage": false,
+            "killPrevSession": false,
+            "ignoreBuildErrors": false,
+            "verbose": false,
+            "any": {
+                "commandLine": "gradle bootRun --init-script \"/data/storage/el2/base/cache/catestinit.gradle\""
+            }
+        },
+        {
+            "request": "launch",
+            "type": "javadbg",
+            "name": "Test: c.p.o.b.BookClientTests",
+            "__internal_id": "95953fee-b81c-47d7-a447-a99d85c6260b",
+            "temporary": true,
+            "tests": {
+                "include": [
+                    {
+                        "module": "./",
+                        "class": "com.polarbookshop.orderservice.book.BookClientTests"
+                    }
+                ],
+                "runner": "auto"
+            },
+            "withCoverage": false
+        },
+        {
+            "request": "launch",
+            "type": "javadbg",
+            "name": "Test: c.p.o.o.d.OrderRepositoryR2dbcTests",
+            "__internal_id": "09dbee85-a1aa-45a7-ae40-46455bbbf65e",
+            "temporary": true,
+            "tests": {
+                "include": [
+                    {
+                        "module": "./",
+                        "class": "com.polarbookshop.orderservice.order.domain.OrderRepositoryR2dbcTests"
+                    }
+                ],
+                "runner": "auto"
+            },
+            "withCoverage": false
+        }
+    ]
+}
