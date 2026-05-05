@@ -60,7 +60,8 @@
                 ],
                 "runner": "auto"
             },
-            "withCoverage": false
+            "withCoverage": false,
+            "revision": 0
         },
         {
             "request": "launch",
@@ -77,7 +78,8 @@
                 ],
                 "runner": "auto"
             },
-            "withCoverage": false
+            "withCoverage": false,
+            "revision": 0
         }
     ]
 }
