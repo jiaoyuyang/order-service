@@ -1,3 +1,0 @@
-virtfs.uid=0
-virtfs.gid=0
-virtfs.mode=33200
